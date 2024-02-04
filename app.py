@@ -14,7 +14,9 @@ def loadClubs(filename='clubs.json'):
     with open(filename) as c:
          listOfClubs = json.load(c)['clubs']
          return listOfClubs
-
+        
+if __name__ == '__main__':
+    unittest.main()
 
 
 def loadCompetitions():
