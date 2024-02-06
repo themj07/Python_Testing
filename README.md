@@ -1,4 +1,4 @@
-Tests Unitaires des Routes de l'Application Flask
+# Tests Unitaires des Routes de l'Application Flask
 
 La classe TestAppRoutes définit des tests unitaires pour vérifier le comportement des routes dans une application Flask. Ces tests utilisent un client de test pour simuler des requêtes HTTP et assurent le bon fonctionnement des routes dans différentes situations.
 Méthodes de Test
@@ -9,7 +9,7 @@ Méthodes de Test
 
     test_book_invalid_input: Ce test vérifie le comportement de la route /book avec des données d'entrée invalides. Il simule une requête GET vers la route /book/InvalidCompetition/InvalidClub et vérifie si le code d'état de la réponse est 200. (Note: Le commentaire indique que le code d'état 200 est attendu ici, cependant, cela peut nécessiter une clarification en fonction des exigences du test.)
 
-Exécution des Tests
+# Exécution des Tests
 
 Pour exécuter les tests, assurez-vous d'être dans le même répertoire que votre fichier de tests et utilisez la commande suivante :
 
