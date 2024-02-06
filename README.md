@@ -1,81 +1,15 @@
-# Intro
-```
-Hey,
+# Code initial
+Le code initial était une route Flask qui permettait aux utilisateurs d’acheter des places pour une compétition pour un club. La fonction purchasePlaces récupérait le nom de la compétition et du club à partir des données du formulaire de la requête POST, cherchait la compétition et le club dans les listes competitions et clubs respectivement, déduisait le nombre de places requises du nombre total de places disponibles pour la compétition, et renvoyait un message de confirmation de réservation.
 
-Je viens de recevoir le rapport de QA pour la phase 1 du projet. Il y a plusieurs bogues, dont un qui fait planter l'application ! 
-Malheureusement, je ne suis pas au bureau pour les prochains jours (un de mes enfants est tombé malade ce week-end). 
-Je ne sais pas encore quand je pourrai être là dans la semaine. Pourriez-vous prendre en charge la mise en œuvre du projet ? 
-Vous devrez régler les bogues de la phase 1 et mettre en œuvre les éléments de la phase 2 (j'ai ajouté le travail de la phase 2 et les bogues de la section “issues” du repo). 
+# Fonction de test unitaire
+La fonction de test unitaire test_purchasePlaces a été conçue pour tester la route purchasePlaces. Elle simulait une requête POST à la route avec des données de formulaire spécifiques, vérifiait si le nombre de places disponibles pour la compétition avait été correctement déduit après l’achat, vérifiait si un message flash de confirmation de réservation était présent dans la réponse, et vérifiait si le code de statut de la réponse était 200, indiquant le succès.
 
-Vous devrez cloner et forker le repo et le mettre en place sur votre machine locale (tout ce dont vous avez besoin se trouve dans le fichier README). 
-Ensuite, passez en revue les bogues dans la section des problèmes, puis essayez de reproduire les problèmes sur votre machine locale pour résoudre les bogues et ajouter la gestion des erreurs. 
-Pour gagner du temps de configuration, nous utilisons Flask et JSON pour éviter d'utiliser une base de données. 
-La plupart des outils dont vous aurez besoin se trouvent dans le fichier requirements.txt dans le repo, 
-mais vous devrez installer Flask et notre framework de test préféré, pytest, ainsi que notre outil de test de performance, Locust. 
+# Fonction corrigée
+La fonction purchasePlaces corrigée a ajouté plusieurs vérifications pour s’assurer que la compétition et le club existent et que le nombre de places requises est valide avant de déduire le nombre de places. Elle a également ajouté une vérification pour s’assurer qu’un utilisateur ne peut pas acheter plus de 12 places à la fois. Ces modifications ont rendu le code plus robuste et ont permis de gérer plus efficacement les erreurs potentielles.
 
-Vous devrez également préparer un rapport de test et un rapport de performances, 
-conformément au guide de développement à la fin des spécifications fonctionnelles ci-jointes. 
-Veillez à suivre toutes les directives, car le QA nous reproche de ne pas respecter les normes. 
-Vous devez tester de manière approfondie les résultats requis (à la fois les happy paths et les sad paths) pour toutes les fonctionnalités de l'application.  
-Je vous encourage également à adopter une approche de TDD, car cela vous aidera à rationaliser votre travail. 
+# Explication des modifications
+Le code initial ne vérifiait pas si la compétition et le club existaient réellement ni si le nombre de places requises était valide avant de déduire le nombre de places. Cela pourrait conduire à des erreurs si les données du formulaire de la requête POST ne correspondaient à aucune compétition ou club existant ou si le nombre de places requises était supérieur au nombre total de places disponibles pour la compétition.
 
-Une fois que vous aurez terminé, nous ferons un examen de ce que vous avez dans la branche QA du code. 
-Nous examinerons les rapports et la manière dont vous avez résolu les problèmes, 
-nous examinerons votre code et nous testerons la couverture de la nouvelle fonctionnalité. 
+Le code corrigé a ajouté ces vérifications pour s’assurer que la compétition et le club existent et que le nombre de places requises est valide avant de déduire le nombre de places. Il a également ajouté une vérification pour s’assurer qu’un utilisateur ne peut pas acheter plus de 12 places à la fois. Ces modifications ont rendu le code plus robuste et ont permis de gérer plus efficacement les erreurs potentielles.
 
-Merci !
-
-```
-1. Why
-
-
-    This is a proof of concept (POC) project to show a light-weight version of our competition booking platform. The aim is the keep things as light as possible, and use feedback from the users to iterate.
-
-2. Getting Started
-
-    This project uses the following technologies:
-
-    * Python v3.x+
-
-    * [Flask](https://flask.palletsprojects.com/en/1.1.x/)
-
-        Whereas Django does a lot of things for us out of the box, Flask allows us to add only what we need. 
-     
-
-    * [Virtual environment](https://virtualenv.pypa.io/en/stable/installation.html)
-
-        This ensures you'll be able to install the correct packages without interfering with Python on your machine.
-
-        Before you begin, please ensure you have this installed globally. 
-
-
-3. Installation
-
-    - After cloning, change into the directory and type <code>virtualenv .</code>. This will then set up a a virtual python environment within that directory.
-
-    - Next, type <code>source bin/activate</code>. You should see that your command prompt has changed to the name of the folder. This means that you can install packages in here without affecting affecting files outside. To deactivate, type <code>deactivate</code>
-
-    - Rather than hunting around for the packages you need, you can install in one step. Type <code>pip install -r requirements.txt</code>. This will install all the packages listed in the respective file. If you install a package, make sure others know by updating the requirements.txt file. An easy way to do this is <code>pip freeze > requirements.txt</code>
-
-    - Flask requires that you set an environmental variable to the python file. However you do that, you'll want to set the file to be <code>server.py</code>. Check [here](https://flask.palletsprojects.com/en/1.1.x/quickstart/#a-minimal-application) for more details
-
-    - You should now be ready to test the application. In the directory, type either <code>flask run</code> or <code>python -m flask run</code>. The app should respond with an address you should be able to go to using your browser.
-
-4. Current Setup
-
-    The app is powered by [JSON files](https://www.tutorialspoint.com/json/json_quick_guide.htm). This is to get around having a DB until we actually need one. The main ones are:
-     
-    * competitions.json - list of competitions
-    * clubs.json - list of clubs with relevant information. You can look here to see what email addresses the app will accept for login.
-
-5. Testing
-
-    You are free to use whatever testing framework you like-the main thing is that you can show what tests you are using.
-
-    We also like to show how well we're testing, so there's a module called 
-    [coverage](https://coverage.readthedocs.io/en/coverage-5.1/) you should add to your project.
-   
- 6. Flake8 Report 
-    
-
-
+La fonction de test unitaire est restée la même, car elle testait correctement la route purchasePlaces en simulant une requête POST et en vérifiant le code de statut de la réponse. Elle a assuré que la route fonctionnait comme prévu et renvoyait une réponse réussie lorsqu’on lui donnait des paramètres valides.
