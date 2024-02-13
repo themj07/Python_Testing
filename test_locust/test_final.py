@@ -2,6 +2,8 @@ import unittest
 from app import *
 import os
 
+from app import loadClubs
+
 class TestBookingRoute(unittest.TestCase):
 
     def setUp(self):
