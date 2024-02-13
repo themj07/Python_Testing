@@ -16,3 +16,6 @@ class TestLoadClubs(unittest.TestCase):
         # Vérifiez si les clubs ont été chargés correctement
         self.assertEqual(loaded_clubs, ["Club A", "Club B", "Club C"])
         os.remove('test_clubs.json')
+
+if __name__ == '__main__':
+    unittest.main()
